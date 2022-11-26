@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.todo-list {
+  width: 336px;
+  height: auto;
+  border: 1px solid #c4c4c4;
+  border-radius: 11px;
+}
+
+.todo-list h2 {
+  color: #000;
+  font-weight: 900;
+  font-size: 26px;
+  line-height: 30px;
+  text-align: center;
+  text-transform: capitalize;
+  padding: 13px 69px 16px;
+}
+
+.overlay {
+  width: 334px;
+  height: 29px;
+  background-color: #ffdc40;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.btn-area {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.btn-one {
+  border: none;
+  background-color: transparent;
+}
+
+.btn-one:focus {
+  outline: none;
+}
+
+.btn-one img {
+  width: 25px;
+  height: 15px;
+  margin: 0px 30px 11px 0px;
+}
+
+.todo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  width: 286px;
+  height: 40px;
+  border: 1px solid #c4c4c4;
+  background: #fff;
+  border-radius: 10px;
+  outline: none;
+  padding: 8px 27px;
+}
+
+
+.todo button {
+  background-color: transparent;
+  border: none;
+}
+
+.todo button:focus {
+  outline: none;
+}
+
+.todo .cancel {
+  position: absolute;
+  top: 7px;
+  right: 52px;
+}
+
+.list {
+  width: 286px;
+  border: 1px solid #c4c4c4;
+  border-radius: 10px;
+  margin: 18px 0px 0px;
+  display: none;
+}
+
+.list-item {
+  list-style: none;
+  padding: 10px 27px;
+  height: 40px;
+  position: relative;
+}
+
+.list-btn {
+  position: absolute;
+  top: 7px;
+  right: 27px;
+}
+
+.submit {
+  margin: 15px 93px 15px 93px;
+  border-radius: 71px;
+}
+
+.submit img {
+  width: 150px;
+  height: 42px;
+}
