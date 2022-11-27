@@ -65,12 +65,11 @@ input {
   width: 286px;
   height: 40px;
   border: 1px solid #c4c4c4;
-  background: #fff;
+  background-color: #fff;
   border-radius: 10px;
   outline: none;
   padding: 8px 27px;
 }
-
 
 .todo button {
   background-color: transparent;
