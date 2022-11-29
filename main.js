@@ -5,7 +5,6 @@ const input = document.querySelector("input");
 const list = document.querySelector("ul");
 const xImg = document.querySelector(".xImg");
 
-// let arr = [];
 
 allData();
 function allData() {
@@ -19,9 +18,8 @@ function allData() {
   list.addEventListener("mouseover", setNewImage);
   list.addEventListener("mouseout", setOldImage);
   // Hover Sort
-  sortBtn.addEventListener("mouseover", hoverNewSort);
   sortBtn.addEventListener("mouseout", hoverOutSort);
-  // Sort List
+  // Sort Area
   sortBtn.addEventListener("click", sortList);
 }
 
@@ -30,24 +28,25 @@ function createItem(e) {
   list.style.display = "block";
 
   saveTodosLS(input.value);
+
   // Create li
-  let li = document.createElement("li");
-  li.innerText = input.value;
+  li = document.createElement("li");
   li.classList.add("list-item");
+  // Create Span
+  span = document.createElement("span");
+  span.innerText = input.value;
+  li.append(span);
   // Create Button
-  let cancBtn = document.createElement("button");
+  cancBtn = document.createElement("button");
   cancBtn.classList.add("list-btn");
   // Create Image
-  let cancImg = document.createElement("img");
-  cancImg.setAttribute("class", "xImg");
-  cancImg.setAttribute("src", "./image/Group 56.png");
+  cancImg = document.createElement("img");
+  cancImg.classList.add("xImg");
+  cancImg.src = "./image/Group 56.png";
   cancImg.setAttribute("alt", "");
-
   cancBtn.append(cancImg);
   li.append(cancBtn);
   list.append(li);
-
-  // // Sort Area
 }
 
 function removeItem(e) {
@@ -75,39 +74,43 @@ function setOldImage(e) {
   }
 }
 
-function hoverNewSort(e) {
-  if (e.target.lastChild == null) {
-    e.target.src = "./image/Group 91.png";
-  }
-}
 function hoverOutSort(e) {
   if (e.target.lastChild == null) {
-    e.target.src = "./image/Group 90.png";
+    e.target.src = "./image/Group 38.png";
   }
 }
 
-function sortList() {
+sorted = true;
+
+function sortList(e) {
+  let arr = [];
   const liList = document.querySelectorAll("li");
 
-  let arr = [];
-
   liList.forEach((item) => {
-    arr.push(item);
+    arr.push(item.firstChild.innerText);
+    console.log(item);
   });
 
-  arr.sort(function (a, b) {
-    if (a.textContent > b.textContent) return -1;
-    if (a.textContent < b.textContent) return 1;
-    return 0;
-  });
-
-  for (let i = 0; i < arr.length; i++) {
-    console.log(arr[i].textContent);
-    list.insertBefore(arr[i], list.firstChild);
+  if (sorted) {
+    arr.sort();
+    sorted = false;
+    liList.forEach((item, index) => {
+      item.firstChild.innerText = arr[index];
+    });
+    if (e.target.lastChild == null) {
+      e.target.src = "./image/Group 91.png";
+    }
+  } else if (!sorted) {
+    arr.reverse();
+    sorted = true;
+    liList.forEach((item, index) => {
+      console.log(item.innerText);
+      item.firstChild.innerText = arr[index];
+    });
+    if (e.target.lastChild == null) {
+      e.target.src = "./image/Group 73.png";
+    }
   }
-
-  arr.reverse();
-
 }
 
 function saveTodosLS(todo) {
@@ -131,18 +134,20 @@ function getTodos() {
   todos.forEach((todo) => {
     list.style.display = "block";
     // Create li
-    let li = document.createElement("li");
-    li.innerText = todo;
+    li = document.createElement("li");
     li.classList.add("list-item");
+    // Create Span
+    span = document.createElement("span");
+    span.innerText = todo;
+    li.append(span);
     // Create Button
-    let cancBtn = document.createElement("button");
+    cancBtn = document.createElement("button");
     cancBtn.classList.add("list-btn");
     // Create Image
-    let cancImg = document.createElement("img");
-    cancImg.setAttribute("class", "xImg");
-    cancImg.setAttribute("src", "./image/Group 56.png");
+    cancImg = document.createElement("img");
+    cancImg.classList.add("xImg");
+    cancImg.src = "./image/Group 56.png";
     cancImg.setAttribute("alt", "");
-
     cancBtn.append(cancImg);
     li.append(cancBtn);
     list.append(li);
