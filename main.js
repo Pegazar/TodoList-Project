@@ -2,8 +2,7 @@ const btn = document.querySelector(".submit");
 const btnClear = document.querySelector(".cancel");
 const sortBtn = document.querySelector(".btn-one");
 const input = document.querySelector("input");
-const list = document.querySelector(".list");
-const liList = document.querySelectorAll(".list-item");
+const list = document.querySelector("ul");
 const xImg = document.querySelector(".xImg");
 
 // let arr = [];
@@ -19,6 +18,11 @@ function allData() {
   // Hover Iamge
   list.addEventListener("mouseover", setNewImage);
   list.addEventListener("mouseout", setOldImage);
+  // Hover Sort
+  sortBtn.addEventListener("mouseover", hoverNewSort);
+  sortBtn.addEventListener("mouseout", hoverOutSort);
+  // Sort List
+  sortBtn.addEventListener("click", sortList);
 }
 
 function createItem(e) {
@@ -44,12 +48,10 @@ function createItem(e) {
   list.append(li);
 
   // // Sort Area
-  // arr.push(input.value);
-  // console.log(arr);
 }
 
 function removeItem(e) {
-  e.target
+  e.target;
   if (e.target.lastChild == null) {
     const todo = e.target.parentElement.parentElement;
     removeLS(todo);
@@ -71,6 +73,41 @@ function setOldImage(e) {
   if (e.target.lastChild == null) {
     e.target.src = "./image/Group 56.png";
   }
+}
+
+function hoverNewSort(e) {
+  if (e.target.lastChild == null) {
+    e.target.src = "./image/Group 91.png";
+  }
+}
+function hoverOutSort(e) {
+  if (e.target.lastChild == null) {
+    e.target.src = "./image/Group 90.png";
+  }
+}
+
+function sortList() {
+  const liList = document.querySelectorAll("li");
+
+  let arr = [];
+
+  liList.forEach((item) => {
+    arr.push(item);
+  });
+
+  arr.sort(function (a, b) {
+    if (a.textContent > b.textContent) return -1;
+    if (a.textContent < b.textContent) return 1;
+    return 0;
+  });
+
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i].textContent);
+    list.insertBefore(arr[i], list.firstChild);
+  }
+
+  arr.reverse();
+
 }
 
 function saveTodosLS(todo) {
@@ -111,6 +148,7 @@ function getTodos() {
     list.append(li);
   });
 }
+getTodos();
 
 function removeLS(todo) {
   let todos;
@@ -123,6 +161,3 @@ function removeLS(todo) {
   todos.splice(todos.indexOf(todoIndex), 1);
   localStorage.setItem("todos", JSON.stringify(todos));
 }
-
-getTodos();
-
